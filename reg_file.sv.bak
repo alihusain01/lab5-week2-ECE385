@@ -1,0 +1,17 @@
+module reg_file(input logic [15:0] BUS,
+						input logic [2:0] DRMUX, SR1MUX, SR2,
+						input logic LD_REG, Clk, Reset,
+						output logic [15:0] SR1OUT, SR2OUT);
+						
+reg_16 R0(.Clk(Clk), .Reset(Reset), .Enable(LD_PC), .D(PC_In), .Data_Out(PC));
+reg_16 R1(.Clk(Clk), .Reset(Reset), .Enable(LD_PC), .D(PC_In), .Data_Out(PC));
+reg_16 R2(.Clk(Clk), .Reset(Reset), .Enable(LD_PC), .D(PC_In), .Data_Out(PC));
+reg_16 R3(.Clk(Clk), .Reset(Reset), .Enable(LD_PC), .D(PC_In), .Data_Out(PC));
+reg_16 R4(.Clk(Clk), .Reset(Reset), .Enable(LD_PC), .D(PC_In), .Data_Out(PC));
+reg_16 R5(.Clk(Clk), .Reset(Reset), .Enable(LD_PC), .D(PC_In), .Data_Out(PC));
+reg_16 R6(.Clk(Clk), .Reset(Reset), .Enable(LD_PC), .D(PC_In), .Data_Out(PC));
+reg_16 R7(.Clk(Clk), .Reset(Reset), .Enable(LD_PC), .D(PC_In), .Data_Out(PC));
+
+
+						
+endmodule
