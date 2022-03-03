@@ -1,5 +1,5 @@
 Flow report for lab5-week2-ECE385
-Thu Feb 24 22:58:28 2022
+Wed Mar 02 18:47:26 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,24 +40,24 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Thu Feb 24 22:58:28 2022       ;
+; Flow Status                        ; Flow Failed - Wed Mar 02 18:47:26 2022      ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; lab5-week2-ECE385                           ;
 ; Top-level Entity Name              ; slc3_testtop                                ;
 ; Family                             ; MAX 10                                      ;
 ; Device                             ; 10M50DAF484C7G                              ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; 139                                         ;
-;     Total combinational functions  ; 137                                         ;
-;     Dedicated logic registers      ; 76                                          ;
-; Total registers                    ; 76                                          ;
-; Total pins                         ; 51                                          ;
-; Total virtual pins                 ; 0                                           ;
-; Total memory bits                  ; 0                                           ;
-; Embedded Multiplier 9-bit elements ; 0                                           ;
-; Total PLLs                         ; 0                                           ;
-; UFM blocks                         ; 0                                           ;
-; ADC blocks                         ; 0                                           ;
+; Total logic elements               ; N/A until Partition Merge                   ;
+;     Total combinational functions  ; N/A until Partition Merge                   ;
+;     Dedicated logic registers      ; N/A until Partition Merge                   ;
+; Total registers                    ; N/A until Partition Merge                   ;
+; Total pins                         ; N/A until Partition Merge                   ;
+; Total virtual pins                 ; N/A until Partition Merge                   ;
+; Total memory bits                  ; N/A until Partition Merge                   ;
+; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                   ;
+; Total PLLs                         ; N/A until Partition Merge                   ;
+; UFM blocks                         ; N/A until Partition Merge                   ;
+; ADC blocks                         ; N/A until Partition Merge                   ;
 +------------------------------------+---------------------------------------------+
 
 
@@ -66,7 +66,7 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 02/24/2022 22:58:20 ;
+; Start date & time ; 03/02/2022 18:47:14 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; lab5-week2-ECE385   ;
 +-------------------+---------------------+
@@ -77,7 +77,7 @@ refer to the applicable agreement for further details.
 +-------------------------------------+----------------------------------------+-------------------+--------------+----------------+
 ; Assignment Name                     ; Value                                  ; Default Value     ; Entity Name  ; Section Id     ;
 +-------------------------------------+----------------------------------------+-------------------+--------------+----------------+
-; COMPILER_SIGNATURE_ID               ; 181124908094976.164576510017416        ; --                ; --           ; --             ;
+; COMPILER_SIGNATURE_ID               ; 174508013120537.164626843416496        ; --                ; --           ; --             ;
 ; EDA_OUTPUT_DATA_FORMAT              ; Systemverilog Hdl                      ; --                ; --           ; eda_simulation ;
 ; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (SystemVerilog)        ; <None>            ; --           ; --             ;
 ; EDA_TIME_SCALE                      ; 1 ps                                   ; --                ; --           ; eda_simulation ;
@@ -99,8 +99,8 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:09     ; 1.0                     ; 4790 MB             ; 00:00:17                           ;
-; Total                ; 00:00:09     ; --                      ; --                  ; 00:00:17                           ;
+; Analysis & Synthesis ; 00:00:12     ; 1.0                     ; 4703 MB             ; 00:00:29                           ;
+; Total                ; 00:00:12     ; --                      ; --                  ; 00:00:29                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -109,7 +109,7 @@ refer to the applicable agreement for further details.
 +----------------------+------------------+------------+------------+----------------+
 ; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
 +----------------------+------------------+------------+------------+----------------+
-; Analysis & Synthesis ; ECEB-3022-09     ; Windows 10 ; 10.0       ; x86_64         ;
+; Analysis & Synthesis ; alisLaptop       ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 

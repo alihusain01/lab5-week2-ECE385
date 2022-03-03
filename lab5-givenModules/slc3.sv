@@ -93,19 +93,32 @@ ISDU state_controller(
 //I started building below this
 //instantiate 16-bit registers IR, MDR,MAR, BUS, PC
 
-logic [15:0] PC, PC_In, BUS, MARMUX_16, ALU, MIOMUX_Out;
+logic [15:0] PC, PC_In, BUS, MARMUX_16, ALU, MIOMUX_Out, IN1_MARMUX, IN2_MARMUX, SR1OUT, SR2OUT;
+always_comb
+begin
+MARMUX_16 = IN1_MARMUX + IN2_MARMUX;
+end
+logic [2:0] DRMUX_Out, SR1MUX_Out;
 
 //MULTIPLEXERS:
-pc_mux 			PC_Mux_Unit(.Choose(PCMUX), .BUS(BUS), .ADDER(16'h0), .PCMUX_In(PC), .PCMUX_Out(PC_In));
-two_to_one_mux MIO_Mux(.Choose(MIO_EN), .S0(BUS), .S1(Data_from_SRAM), .OUT(MIOMUX_Out));
-gate_mux 		GATE_Mux_Unit(.GatePC(GatePC), .GateMDR(GateMDR), .GateALU(GateALU), .GateMARMUX(GateMARMUX),
-										.PC(PC), .MDR(MDR), .ALU(ALU), .MARMUX(MARMUX_16), 
-										.BUS(BUS));
+pc_mux 					PC_Mux_Unit(.Choose(PCMUX), .BUS(BUS), .ADDER(16'h0), .PCMUX_In(PC), .PCMUX_Out(PC_In));
+two_to_one_mux 		MIO_Mux(.Choose(MIO_EN), .S0(BUS), .S1(Data_from_SRAM), .OUT(MIOMUX_Out));
+gate_mux 				GATE_Mux_Unit(.GatePC(GatePC), .GateMDR(GateMDR), .GateALU(GateALU), .GateMARMUX(GateMARMUX),
+												.PC(PC), .MDR(MDR), .ALU(ALU), .MARMUX(MARMUX_16), 
+												.BUS(BUS));
+addr2_mux 				ADDR2_Mux(.ADDR2MUX(ADDR2MUX), .ELEVEN({5{IR[10]}, IR[10:0]}), .NINE({7{IR[8]}, IR[8:0]}), 
+									.SIX({10{IR[5]}, IR[5:0]}), .OUT(IN2_MARMUX));
+reg_two_to_one_mux 	DR_Mux(.Choose(DRMUX), .S0(IR[11:9]), .S1(3'b111), .OUT(DRMUX_Out));
+reg_two_to_one_mux 	SR1_Mux(.Choose(SR1MUX), .S0(IR[8:6]), .S1(IR[11:9]), .OUT(SR1MUX_Out));						
+
 //REGISTERS
 reg_16 PC_Unit(.Clk(Clk), .Reset(Reset), .Enable(LD_PC), .D(PC_In), .Data_Out(PC));
 reg_16 MAR_Unit(.Clk(Clk), .Reset(Reset), .Enable(LD_MAR),.D(BUS), .Data_Out(MAR));
 reg_16 MDR_Unit(.Clk(Clk), .Reset(Reset), .Enable(LD_MDR),.D(MIOMUX_Out), .Data_Out(MDR));
 reg_16 IR_Unit( .Clk(Clk), .Reset(Reset), .Enable(LD_IR), .D(BUS) , .Data_Out(IR));
+
+reg_file Register_file(.BUS(BUS), .DRMUX(DRMUX_Out), .SR1MUX(.SR1MUX_Out), .SR2(IR[2:0]), LD_REG(LD_REG),
+								.Clk(Clk), .Reset(Reset), .SR1OUT(SR1OUT), .SR2OUT(SR2OUT));
 
 	
 endmodule
