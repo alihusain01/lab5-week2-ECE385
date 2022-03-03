@@ -1,5 +1,5 @@
 Flow report for lab5-week2-ECE385
-Wed Mar 02 18:47:26 2022
+Thu Mar 03 00:25:54 2022
 Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Lite Edition
 
 
@@ -40,24 +40,24 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Flow Failed - Wed Mar 02 18:47:26 2022      ;
+; Flow Status                        ; Successful - Thu Mar 03 00:25:54 2022       ;
 ; Quartus Prime Version              ; 18.1.0 Build 625 09/12/2018 SJ Lite Edition ;
 ; Revision Name                      ; lab5-week2-ECE385                           ;
 ; Top-level Entity Name              ; slc3_testtop                                ;
 ; Family                             ; MAX 10                                      ;
 ; Device                             ; 10M50DAF484C7G                              ;
 ; Timing Models                      ; Final                                       ;
-; Total logic elements               ; N/A until Partition Merge                   ;
-;     Total combinational functions  ; N/A until Partition Merge                   ;
-;     Dedicated logic registers      ; N/A until Partition Merge                   ;
-; Total registers                    ; N/A until Partition Merge                   ;
-; Total pins                         ; N/A until Partition Merge                   ;
-; Total virtual pins                 ; N/A until Partition Merge                   ;
-; Total memory bits                  ; N/A until Partition Merge                   ;
-; Embedded Multiplier 9-bit elements ; N/A until Partition Merge                   ;
-; Total PLLs                         ; N/A until Partition Merge                   ;
-; UFM blocks                         ; N/A until Partition Merge                   ;
-; ADC blocks                         ; N/A until Partition Merge                   ;
+; Total logic elements               ; 601                                         ;
+;     Total combinational functions  ; 455                                         ;
+;     Dedicated logic registers      ; 225                                         ;
+; Total registers                    ; 225                                         ;
+; Total pins                         ; 51                                          ;
+; Total virtual pins                 ; 0                                           ;
+; Total memory bits                  ; 0                                           ;
+; Embedded Multiplier 9-bit elements ; 0                                           ;
+; Total PLLs                         ; 0                                           ;
+; UFM blocks                         ; 0                                           ;
+; ADC blocks                         ; 0                                           ;
 +------------------------------------+---------------------------------------------+
 
 
@@ -66,32 +66,39 @@ refer to the applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 03/02/2022 18:47:14 ;
+; Start date & time ; 03/03/2022 00:25:40 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; lab5-week2-ECE385   ;
 +-------------------+---------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------+
-; Flow Non-Default Global Settings                                                                                                 ;
-+-------------------------------------+----------------------------------------+-------------------+--------------+----------------+
-; Assignment Name                     ; Value                                  ; Default Value     ; Entity Name  ; Section Id     ;
-+-------------------------------------+----------------------------------------+-------------------+--------------+----------------+
-; COMPILER_SIGNATURE_ID               ; 174508013120537.164626843416496        ; --                ; --           ; --             ;
-; EDA_OUTPUT_DATA_FORMAT              ; Systemverilog Hdl                      ; --                ; --           ; eda_simulation ;
-; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (SystemVerilog)        ; <None>            ; --           ; --             ;
-; EDA_TIME_SCALE                      ; 1 ps                                   ; --                ; --           ; eda_simulation ;
-; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --                ; --           ; --             ;
-; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --                ; --           ; --             ;
-; MISC_FILE                           ; ram_bb.v                               ; --                ; --           ; --             ;
-; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --                ; slc3_testtop ; Top            ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; -- (Not supported for targeted family) ; --                ; slc3_testtop ; Top            ;
-; PARTITION_NETLIST_TYPE              ; -- (Not supported for targeted family) ; --                ; slc3_testtop ; Top            ;
-; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                    ; --                ; --           ; --             ;
-; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --                ; --           ; --             ;
-; PROJECT_OUTPUT_DIRECTORY            ; output_files                           ; --                ; --           ; --             ;
-; TOP_LEVEL_ENTITY                    ; slc3_testtop                           ; lab5-week2-ECE385 ; --           ; --             ;
-+-------------------------------------+----------------------------------------+-------------------+--------------+----------------+
++-----------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                  ;
++--------------------------------------+----------------------------------------+-------------------+--------------+----------------+
+; Assignment Name                      ; Value                                  ; Default Value     ; Entity Name  ; Section Id     ;
++--------------------------------------+----------------------------------------+-------------------+--------------+----------------+
+; COMPILER_SIGNATURE_ID                ; 172308989864985.164628874019780        ; --                ; --           ; --             ;
+; EDA_DESIGN_INSTANCE_NAME             ; NA                                     ; --                ; --           ; testbench_1    ;
+; EDA_NATIVELINK_SIMULATION_TEST_BENCH ; testbench_1                            ; --                ; --           ; eda_simulation ;
+; EDA_OUTPUT_DATA_FORMAT               ; Systemverilog Hdl                      ; --                ; --           ; eda_simulation ;
+; EDA_SIMULATION_TOOL                  ; ModelSim-Altera (SystemVerilog)        ; <None>            ; --           ; --             ;
+; EDA_TEST_BENCH_ENABLE_STATUS         ; TEST_BENCH_MODE                        ; --                ; --           ; eda_simulation ;
+; EDA_TEST_BENCH_FILE                  ; testbench_1.sv                         ; --                ; --           ; testbench_1    ;
+; EDA_TEST_BENCH_MODULE_NAME           ; testbench_1                            ; --                ; --           ; testbench_1    ;
+; EDA_TEST_BENCH_NAME                  ; testbench_1                            ; --                ; --           ; eda_simulation ;
+; EDA_TEST_BENCH_RUN_SIM_FOR           ; 10000 ns                               ; --                ; --           ; testbench_1    ;
+; EDA_TIME_SCALE                       ; 1 ps                                   ; --                ; --           ; eda_simulation ;
+; MAX_CORE_JUNCTION_TEMP               ; 85                                     ; --                ; --           ; --             ;
+; MIN_CORE_JUNCTION_TEMP               ; 0                                      ; --                ; --           ; --             ;
+; MISC_FILE                            ; ram_bb.v                               ; --                ; --           ; --             ;
+; PARTITION_COLOR                      ; -- (Not supported for targeted family) ; --                ; slc3_testtop ; Top            ;
+; PARTITION_FITTER_PRESERVATION_LEVEL  ; -- (Not supported for targeted family) ; --                ; slc3_testtop ; Top            ;
+; PARTITION_NETLIST_TYPE               ; -- (Not supported for targeted family) ; --                ; slc3_testtop ; Top            ;
+; POWER_BOARD_THERMAL_MODEL            ; None (CONSERVATIVE)                    ; --                ; --           ; --             ;
+; POWER_PRESET_COOLING_SOLUTION        ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW  ; --                ; --           ; --             ;
+; PROJECT_OUTPUT_DIRECTORY             ; output_files                           ; --                ; --           ; --             ;
+; TOP_LEVEL_ENTITY                     ; slc3_testtop                           ; lab5-week2-ECE385 ; --           ; --             ;
++--------------------------------------+----------------------------------------+-------------------+--------------+----------------+
 
 
 +--------------------------------------------------------------------------------------------------------------------------+
@@ -99,8 +106,8 @@ refer to the applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:12     ; 1.0                     ; 4703 MB             ; 00:00:29                           ;
-; Total                ; 00:00:12     ; --                      ; --                  ; 00:00:29                           ;
+; Analysis & Synthesis ; 00:00:14     ; 1.0                     ; 4770 MB             ; 00:00:30                           ;
+; Total                ; 00:00:14     ; --                      ; --                  ; 00:00:30                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

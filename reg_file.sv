@@ -4,16 +4,7 @@ module reg_file(input logic [15:0] BUS,
 						output logic [15:0] SR1OUT, SR2OUT);
 
 logic [7:0] LD_REG_arr ;
-logic [7:0] Data_Out_arr[15:0];						
-						
-reg_16 R0(.Clk(Clk), .Reset(Reset), .Enable(LD_REG_arr[0]), .D(BUS), .Data_Out(Data_Out_arr[0]));
-reg_16 R1(.Clk(Clk), .Reset(Reset), .Enable(LD_REG_arr[1]), .D(BUS), .Data_Out(Data_Out_arr[1]));
-reg_16 R2(.Clk(Clk), .Reset(Reset), .Enable(LD_REG_arr[2]), .D(BUS), .Data_Out(Data_Out_arr[2]));
-reg_16 R3(.Clk(Clk), .Reset(Reset), .Enable(LD_REG_arr[3]), .D(BUS), .Data_Out(Data_Out_arr[3]));
-reg_16 R4(.Clk(Clk), .Reset(Reset), .Enable(LD_REG_arr[4]), .D(BUS), .Data_Out(Data_Out_arr[4]));
-reg_16 R5(.Clk(Clk), .Reset(Reset), .Enable(LD_REG_arr[5]), .D(BUS), .Data_Out(Data_Out_arr[5]));
-reg_16 R6(.Clk(Clk), .Reset(Reset), .Enable(LD_REG_arr[6]), .D(BUS), .Data_Out(Data_Out_arr[6]));
-reg_16 R7(.Clk(Clk), .Reset(Reset), .Enable(LD_REG_arr[7]), .D(BUS), .Data_Out(Data_Out_arr[7]));
+logic [15:0] Data_Out_arr[7:0];						
 						
  always_comb
  begin
@@ -84,5 +75,14 @@ reg_16 R7(.Clk(Clk), .Reset(Reset), .Enable(LD_REG_arr[7]), .D(BUS), .Data_Out(D
 		3'b111:
 			 SR2OUT = Data_Out_arr[7];
 	endcase
-end			
+end	
+
+reg_16 R0(.Clk(Clk), .Reset(Reset), .Enable(LD_REG_arr[0]), .D(BUS), .Data_Out(Data_Out_arr[0]));
+reg_16 R1(.Clk(Clk), .Reset(Reset), .Enable(LD_REG_arr[1]), .D(BUS), .Data_Out(Data_Out_arr[1]));
+reg_16 R2(.Clk(Clk), .Reset(Reset), .Enable(LD_REG_arr[2]), .D(BUS), .Data_Out(Data_Out_arr[2]));
+reg_16 R3(.Clk(Clk), .Reset(Reset), .Enable(LD_REG_arr[3]), .D(BUS), .Data_Out(Data_Out_arr[3]));
+reg_16 R4(.Clk(Clk), .Reset(Reset), .Enable(LD_REG_arr[4]), .D(BUS), .Data_Out(Data_Out_arr[4]));
+reg_16 R5(.Clk(Clk), .Reset(Reset), .Enable(LD_REG_arr[5]), .D(BUS), .Data_Out(Data_Out_arr[5]));
+reg_16 R6(.Clk(Clk), .Reset(Reset), .Enable(LD_REG_arr[6]), .D(BUS), .Data_Out(Data_Out_arr[6]));
+reg_16 R7(.Clk(Clk), .Reset(Reset), .Enable(LD_REG_arr[7]), .D(BUS), .Data_Out(Data_Out_arr[7]));		
 endmodule
