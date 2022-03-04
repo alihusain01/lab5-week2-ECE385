@@ -47,10 +47,10 @@ logic [15:0] MDR_In;
 logic [15:0] MAR, MDR, IR;
 
 //ASSIGNING HEX DRIVERS
-assign hex_4[0] = SW[3:0]; //changed from IR to SW
-assign hex_4[1] = SW[7:4];
-assign hex_4[2] = SW[11:8];
-assign hex_4[3] = SW[15:12];
+assign hex_4[0] = R5_Out[3:0];
+assign hex_4[1] = R5_Out[7:4];
+assign hex_4[2] = R5_Out[11:8];
+assign hex_4[3] = R5_Out[15:12];
 
 
 // Connect MAR to ADDR, which is also connected as an input into MEM2IO
@@ -93,7 +93,7 @@ ISDU state_controller(
 //I started building below this
 //instantiate 16-bit registers IR, MDR,MAR, BUS, PC
 
-logic [15:0] PC, PC_In, BUS, MARMUX_16, ALU, MIOMUX_Out, IN1_MARMUX, IN2_MARMUX, SR1OUT, SR2OUT, SR2MUX_Out;
+logic [15:0] PC, PC_In, BUS, MARMUX_16, ALU, MIOMUX_Out, IN1_MARMUX, IN2_MARMUX, SR1OUT, SR2OUT, SR2MUX_Out, R5_Out;
 logic [2:0] DRMUX_Out, SR1MUX_Out, CC_In, CC_Out;
 logic BEN_In;
 
@@ -103,27 +103,46 @@ begin
 MARMUX_16 = IN1_MARMUX + IN2_MARMUX;
 end
 
+//logic for LEDS
+//always_comb
+//begin
+//if(LD_LED == 1'b1)
+//	begin
+//	LED=IR[11:0];
+//	end
+//else
+//begin
+//LED=LED;
+//end
+//end
+
+always_comb
+	begin
+	LED = IR[9:0];
+	end
+
+
 //logic for CC
 always_comb
 begin
 if(BUS[15] == 1'b1)
 	begin
-	CC_In = 3'b100;
+		CC_In = 3'b100;
 	end
 else if(BUS == 16'h0)
 	begin
-	CC_In = 3'b010;
+		CC_In = 3'b010;
 	end
 else
 	begin
-	CC_In = 3'b001;
+		CC_In = 3'b001;
 	end
 end
 
 //logic for BEN
 always_comb
 begin
-	if(CC_Out[2] == IR[11] || CC_Out[1] == IR[10] || CC_Out[0] == IR[9])
+	if((CC_Out[2] & IR[11]) || (CC_Out[1] & IR[10]) || (CC_Out[0] & IR[9]))
 		begin
 		BEN_In = 1'b1;
 		end
@@ -150,7 +169,7 @@ two_to_one_mux 		ADDR1_Mux(.Choose(ADDR1MUX), .S0(SR1OUT), .S1(PC), .OUT(IN1_MAR
 reg_two_to_one_mux 	DR_Mux(.Choose(DRMUX), .S0(IR[11:9]), .S1(3'b111), .OUT(DRMUX_Out));
 reg_two_to_one_mux 	SR1_Mux(.Choose(SR1MUX), .S0(IR[8:6]), .S1(IR[11:9]), .OUT(SR1MUX_Out));
 
-two_to_one_mux 		SR2_Mux(.Choose(IR[4]), .S0(SR2OUT), .S1({{11{IR[4]}}, IR[4:0]}), .OUT(SR2MUX_Out));						
+two_to_one_mux 		SR2_Mux(.Choose(IR[5]), .S0(SR2OUT), .S1({{11{IR[4]}}, IR[4:0]}), .OUT(SR2MUX_Out));						
 
 //REGISTERS
 reg_16 PC_Unit(.Clk(Clk), .Reset(Reset), .Enable(LD_PC), .D(PC_In), .Data_Out(PC));
@@ -159,7 +178,7 @@ reg_16 MDR_Unit(.Clk(Clk), .Reset(Reset), .Enable(LD_MDR),.D(MIOMUX_Out), .Data_
 reg_16 IR_Unit( .Clk(Clk), .Reset(Reset), .Enable(LD_IR), .D(BUS) , .Data_Out(IR));
 
 reg_file Register_file(.BUS(BUS), .DRMUX(DRMUX_Out), .SR1MUX(SR1MUX_Out), .SR2(IR[2:0]), .LD_REG(LD_REG),
-								.Clk(Clk), .Reset(Reset), .SR1OUT(SR1OUT), .SR2OUT(SR2OUT));
+								.Clk(Clk), .Reset(Reset), .SR1OUT(SR1OUT), .SR2OUT(SR2OUT), .R5_Out(R5_Out));
 								
 reg_1 BEN_Unit(.Clk(Clk), .Reset(Reset), .Enable(LD_BEN), .D(BEN_In), .Data_Out(BEN));
 reg_3 CC_Unit(.Clk(Clk), .Reset(Reset), .Enable(LD_CC), .D(CC_In), .Data_Out(CC_Out));

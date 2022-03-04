@@ -9,25 +9,20 @@ module pc_mux(input logic [1:0] Choose,
 	
 	always_comb
 	begin
-		if (Choose == 00)
-		begin
-		PCMUX_Out = PCMUX_In + 1;
-		end
-		
-		else if (Choose == 01)
-		begin
-		PCMUX_Out = ADDER;
-		end
-	
-		else if (Choose == 10)
-		begin
-		PCMUX_Out = BUS;
-		end	
-	
-		else
-		begin
-		PCMUX_Out = 16'h0;
-		end		
+		case (Choose)
+			2'b00 : begin
+				PCMUX_Out = PCMUX_In + 16'h0001;
+			end
+			2'b01 : begin
+				PCMUX_Out = ADDER;
+			end
+			2'b10 : begin
+				PCMUX_Out = BUS;
+			end
+			2'b11 : begin
+				PCMUX_Out = 16'hFFFF;
+			end
+		endcase		
 	end	
 
 endmodule

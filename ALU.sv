@@ -15,9 +15,13 @@ begin
 	begin
 	OUT = SR1 & SR2_OUT;
 	end
-	else
+	else if (ALUK == 2'b10)
 	begin
 	OUT = ~SR1;
+	end
+	else
+	begin
+	OUT = SR1;
 	end
 end		
 endmodule

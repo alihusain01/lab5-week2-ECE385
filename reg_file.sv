@@ -1,7 +1,7 @@
 module reg_file(input logic [15:0] BUS,
 						input logic [2:0] DRMUX, SR1MUX, SR2,
 						input logic LD_REG, Clk, Reset,
-						output logic [15:0] SR1OUT, SR2OUT);
+						output logic [15:0] SR1OUT, SR2OUT, R5_Out);
 
 logic [7:0] LD_REG_arr ;
 logic [15:0] Data_Out_arr[7:0];						
@@ -16,8 +16,7 @@ logic [15:0] Data_Out_arr[7:0];
 	 LD_REG_arr[5] = 1'b0;
 	 LD_REG_arr[6] = 1'b0;
 	 LD_REG_arr[7] = 1'b0;
-	case (LD_REG)
-		1'b1:						
+	if (LD_REG) begin					
 		case (DRMUX)
 			3'b000:
 				 LD_REG_arr[0] = 1'b1;
@@ -36,7 +35,7 @@ logic [15:0] Data_Out_arr[7:0];
 			3'b111:
 				 LD_REG_arr[7] = 1'b1;	
 		endcase
-	endcase
+	end
 
 	case (SR1MUX)
 		3'b000:
@@ -84,5 +83,10 @@ reg_16 R3(.Clk(Clk), .Reset(Reset), .Enable(LD_REG_arr[3]), .D(BUS), .Data_Out(D
 reg_16 R4(.Clk(Clk), .Reset(Reset), .Enable(LD_REG_arr[4]), .D(BUS), .Data_Out(Data_Out_arr[4]));
 reg_16 R5(.Clk(Clk), .Reset(Reset), .Enable(LD_REG_arr[5]), .D(BUS), .Data_Out(Data_Out_arr[5]));
 reg_16 R6(.Clk(Clk), .Reset(Reset), .Enable(LD_REG_arr[6]), .D(BUS), .Data_Out(Data_Out_arr[6]));
-reg_16 R7(.Clk(Clk), .Reset(Reset), .Enable(LD_REG_arr[7]), .D(BUS), .Data_Out(Data_Out_arr[7]));		
+reg_16 R7(.Clk(Clk), .Reset(Reset), .Enable(LD_REG_arr[7]), .D(BUS), .Data_Out(Data_Out_arr[7]));	
+
+always_comb
+begin
+R5_Out = Data_Out_arr[5];
+end	
 endmodule

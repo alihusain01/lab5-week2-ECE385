@@ -194,7 +194,7 @@ module ISDU (   input logic         Clk,
 			S_16_1 : 
 				Next_state = S_16_2;	
 			S_16_2 : 
-				Next_state = S_16_3;	
+				Next_state = S_16_3;
 			S_16_3 : 
 				Next_state = S_18;	
 			S_04 : 
@@ -204,12 +204,11 @@ module ISDU (   input logic         Clk,
 			S_12 : 
 				Next_state = S_18;	
 			S_00 : 
-				case(BEN)
-				1'b0 :
-				Next_state = S_18;
-				default :
-				Next_state = S_22;
-			endcase
+				if (BEN) begin
+					Next_state = S_22;
+				end else begin
+					Next_state = S_18;
+				end
 			S_22 : 
 				Next_state = S_18;						
 			// You need to finish the rest of states.....
@@ -234,6 +233,10 @@ module ISDU (   input logic         Clk,
 			S_33_2 : 
 				begin 
 					Mem_OE = 1'b1;
+				end
+			S_33_3:
+				begin 
+					Mem_OE = 1'b1;
 					LD_MDR = 1'b1;
 				end
 			S_35 : 
@@ -241,8 +244,8 @@ module ISDU (   input logic         Clk,
 					GateMDR = 1'b1;
 					LD_IR = 1'b1;
 				end
-			PauseIR1: ;
-			PauseIR2: ;
+//			PauseIR1:;// LD_LED=1'b1;
+//			PauseIR2:;// LD_LED=1'b1;
 			S_32 : 
 				LD_BEN = 1'b1;
 			S_01 : 
@@ -273,7 +276,6 @@ module ISDU (   input logic         Clk,
 				end
 			S_06 :
 				begin
-				SR1MUX = 1'b1;
 				ADDR1MUX = 1'b0;
 				ADDR2MUX = 2'b10;
 				GateMARMUX = 1'b1;
@@ -282,12 +284,10 @@ module ISDU (   input logic         Clk,
 			S_25_1 : 
 				begin
 				Mem_OE = 1'b1;
-				LD_MDR = 1'b1;
 				end
 			S_25_2 : 
 				begin
 				Mem_OE = 1'b1;
-				LD_MDR = 1'b1;
 				end
 			S_25_3 : 
 				begin
@@ -302,7 +302,7 @@ module ISDU (   input logic         Clk,
 				end
 			S_07 : 
 				begin
-				SR1MUX = 1'b1;
+				SR1MUX = 1'b0;
 				ADDR1MUX = 1'b0;
 				ADDR2MUX = 2'b10;
 				GateMARMUX = 1'b1;
@@ -314,7 +314,6 @@ module ISDU (   input logic         Clk,
 				ADDR1MUX = 1'b1;
 				ADDR2MUX = 2'b11;
 				GateMARMUX = 1'b1;
-				Mem_OE = 1'b1;
 				LD_MDR = 1'b1;
 				end
 			S_16_1 : 
@@ -333,6 +332,7 @@ module ISDU (   input logic         Clk,
 				begin
 				GatePC = 1'b1;
 				DRMUX = 1'b1;
+				LD_REG = 1'b1;
 				end
 			S_21 :
 				begin
